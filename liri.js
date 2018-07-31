@@ -25,21 +25,26 @@ function moiveSearch(){
 var request = require("request");
 
 request("http://www.omdbapi.com/?t="+ input +"&y=&plot=short&apikey=trilogy", function(error, response, body) {
-
-    if (json == null){
-        console.log("Does not Exist Search Again");
-
-    }else if (!error && response.statusCode === 200) {
-
-        var json = JSON.parse(body);
+    var json = JSON.parse(body);
+if(json.Title === undefined){
+    console.log("\n=====================\n")
+    console.log("Movie Does Not Exist")
+    console.log("\n=====================\n")
+}else if(json.Ratings.length < 1){
+    var rottenTomato = "";
+}else if(json.Ratings.length > 1){
+    var rottenTomato = json.Ratings[1].Value;
+}
+if (!error && response.statusCode === 200) {
         
     
         console.log("\n========================================================\n")
-        console.log(`Title: ${json.Title}\nYear: ${json.Year}\nImdb Rating: ${json.imdbRating}\nRotten Tomatoes Rating: ${json.Ratings[2].Value}\nCountry: ${json.Country}\nPlot: ${json.Plot}\nActors: ${json.Actors}`);
+        console.log(`Title: ${json.Title}\nYear: ${json.Year}\nImdb Rating: ${json.imdbRating}\nRotten Tomatoes Rating: ${rottenTomato}\nCountry: ${json.Country}\nPlot: ${json.Plot}\nActors: ${json.Actors}`);
         console.log("\n======================================================") 
     }
   });
 }
+
 
 function randomFile(){
 fs.readFile("random.txt", "utf8", function(error, data) {
