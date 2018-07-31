@@ -12,7 +12,7 @@ function spotifySearch(){
 
   spotify.search({ type: 'track', query: input, limit: '1' }, function(err, data) {
     if (err) {
-      return console.log('Error occurred: ' + err);
+      return console.log(`${input} does not exist`);
     }
     console.log("\n========================================================\n")
     console.log(`Artist: ${data.tracks.items[0].artists[0].name}\nSong: ${data.tracks.items[0].name}\nAlbum: ${data.tracks.items[0].album.name}\nURL: ${data.tracks.items[0].preview_url}`);
@@ -30,11 +30,17 @@ if(json.Title === undefined){
     console.log("\n=====================\n")
     console.log("Movie Does Not Exist")
     console.log("\n=====================\n")
-}else if(json.Ratings.length < 1){
+
+}else if(json.Ratings.length < 2){
     var rottenTomato = "";
+    movieDisplay()
+
 }else if(json.Ratings.length > 1){
     var rottenTomato = json.Ratings[1].Value;
+    movieDisplay()
 }
+
+function movieDisplay(){
 if (!error && response.statusCode === 200) {
         
     
@@ -42,6 +48,7 @@ if (!error && response.statusCode === 200) {
         console.log(`Title: ${json.Title}\nYear: ${json.Year}\nImdb Rating: ${json.imdbRating}\nRotten Tomatoes Rating: ${rottenTomato}\nCountry: ${json.Country}\nPlot: ${json.Plot}\nActors: ${json.Actors}`);
         console.log("\n======================================================") 
     }
+}
   });
 }
 
