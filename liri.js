@@ -14,9 +14,10 @@ function spotifySearch(){
     if (err) {
       return console.log(`${input} does not exist`);
     }
-    console.log("\n========================================================\n")
-    console.log(`Artist: ${data.tracks.items[0].artists[0].name}\nSong: ${data.tracks.items[0].name}\nAlbum: ${data.tracks.items[0].album.name}\nURL: ${data.tracks.items[0].preview_url}`);
-    console.log("\n======================================================") 
+        console.log("\n========================================================\n")
+        console.log(`Artist: ${data.tracks.items[0].artists[0].name}\nSong: ${data.tracks.items[0].name}\nAlbum: ${data.tracks.items[0].album.name}\nURL: ${data.tracks.items[0].preview_url}`);
+        console.log("\n======================================================");
+
   });
 }
 
@@ -46,7 +47,8 @@ if(json.Title === undefined){
             
                 console.log("\n========================================================\n")
                 console.log(`Title: ${json.Title}\nYear: ${json.Year}\nImdb Rating: ${json.imdbRating}\nRotten Tomatoes Rating: ${rottenTomato}\nCountry: ${json.Country}\nPlot: ${json.Plot}\nActors: ${json.Actors}`);
-                console.log("\n======================================================") 
+                console.log("\n======================================================");
+
             }
         }
   });
@@ -75,7 +77,14 @@ fs.readFile("random.txt", "utf8", function(error, data) {
   
   });
 }
-  
+ 
+if(process.argv[2] == null){
+    console.log(`\n================================\n`);
+    console.log(`Please enter a command.\n\nmovie-this : Search\nspotify-this-song : Search\n\nBatman: Movie Name\nLife is a highway: Song Name`)
+    console.log(`\n================================\n`)
+    console.log(`Example:\n\nmovie-this batman\n\nspotify-this-song life is a highway`)
+    console.log(`\n================================\n`);
+}
 if(process.argv[2] === "spotify-this-song" && process.argv[3] == null || process.argv[2] === "spotify-this-song" && process.argv[3] === ""){
    var input = "Ace of Base";
    spotifySearch();
