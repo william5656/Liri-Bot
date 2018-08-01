@@ -31,24 +31,24 @@ if(json.Title === undefined){
     console.log("Movie Does Not Exist")
     console.log("\n=====================\n")
 
-}else if(json.Ratings.length < 2){
-    var rottenTomato = "";
-    movieDisplay()
+    }else if(json.Ratings.length < 2){
+        var rottenTomato = "";
+        movieDisplay()
 
-}else if(json.Ratings.length > 1){
-    var rottenTomato = json.Ratings[1].Value;
-    movieDisplay()
-}
+        }else if(json.Ratings.length > 1){
+            var rottenTomato = json.Ratings[1].Value;
+            movieDisplay()
+        }
 
-function movieDisplay(){
-if (!error && response.statusCode === 200) {
-        
-    
-        console.log("\n========================================================\n")
-        console.log(`Title: ${json.Title}\nYear: ${json.Year}\nImdb Rating: ${json.imdbRating}\nRotten Tomatoes Rating: ${rottenTomato}\nCountry: ${json.Country}\nPlot: ${json.Plot}\nActors: ${json.Actors}`);
-        console.log("\n======================================================") 
-    }
-}
+        function movieDisplay(){
+        if (!error && response.statusCode === 200) {
+                
+            
+                console.log("\n========================================================\n")
+                console.log(`Title: ${json.Title}\nYear: ${json.Year}\nImdb Rating: ${json.imdbRating}\nRotten Tomatoes Rating: ${rottenTomato}\nCountry: ${json.Country}\nPlot: ${json.Plot}\nActors: ${json.Actors}`);
+                console.log("\n======================================================") 
+            }
+        }
   });
 }
 
@@ -61,7 +61,8 @@ fs.readFile("random.txt", "utf8", function(error, data) {
     }
   
     var dataArr = data.split(",");
-
+    console.log(dataArr)
+    
     for(var i=0; i < dataArr.length; i++){
 
     };
